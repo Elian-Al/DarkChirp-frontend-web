@@ -8,6 +8,9 @@ function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
       </main>
+      <div className={styles.div}>
+        
+      </div>
     </div>
   );
 }
