@@ -1,0 +1,46 @@
+/* styles/AuthModal.module.css */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Assure que la modale est au-dessus de tout */
+}
+
+.modalContent {
+    background-color: #191d20;
+    /* padding: 30px; */
+    border : 3px solid rgb(65, 65, 65);
+    border-radius: 12px;
+    min-width: 450px;
+    max-width: 450px; /* Taille typique pour une modale d'auth */
+    min-height: 400px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    /* right: 200; */
+    display: flex;
+    justify-content: center;
+}
+
+.closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
