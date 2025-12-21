@@ -1,0 +1,21 @@
+.input {
+    border-radius: 5px;
+    height: 35px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    /* outline: none; */
+    border: 3px solid rgb(65, 65, 65);
+    color: rgb(255, 0, 0) !important;
+}
+
+.input::placeholder {
+    color: rgba(255, 0, 0, 0.555); /* Couleur rouge, mais légèrement transparente pour le placeholder */
+    opacity: 1; /* Parfois nécessaire pour override les navigateurs */
+}
+
+.input:focus {
+    /* border: 1px solid #1a89f7; */
+    outline: 2px solid rgb(148, 0, 0);
+}
