@@ -29,6 +29,8 @@
 
 ## 📂 Architecture du Code
 
+---
+
 ```text
 ├── components/          # Composants de structure (Home, Posts, Profile)
 │   ├── UI/              # Composants atomiques (Button, Input)
@@ -38,6 +40,8 @@
 ├── stores/              # Stores Zustand (Authentification)
 └── styles/              # CSS Modules
 ```
+
+---
 
 ## ⚙️ Installation et Lancement
 ### 1. Prérequis
@@ -66,11 +70,17 @@ npm run dev
 ```
 Accédez à l'application via : http://localhost:3001
 
+---
+
 ## 🛡️ Sécurité
 Le client communique avec l'API en utilisant des Tokens JWT stockés localement et gérés par le store Zustand. Chaque requête vers un endpoint protégé inclut automatiquement le header Authorization: Bearer <token>.
 
+---
+
 ## 🔗 Liens
 Dépôt Backend : [DarkChirp-backend](https://github.com/Elian-Al/DarkChirp-backend)
+
+---
 
 ## 📝 Auteur
 Elian - [Profil GitHub](https://github.com/Elian-Al)
