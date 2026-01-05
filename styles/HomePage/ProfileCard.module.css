@@ -1,0 +1,26 @@
+.profileCard {
+    display: flex;
+    align-items: center;
+    border: 3px solid rgb(65, 65, 65);
+    border-radius: 15;
+}
+
+.avatar {
+    border-radius: 50;
+    margin-inline: 15px;
+    margin-block: 10px;
+}
+
+.userInfo {
+    padding-inline: 10px;
+}
+
+.firstname {
+    /* border: 3px solid rgb(65, 65, 65); */
+}
+
+.username {
+    /* border: 3px solid rgb(65, 65, 65); */
+    margin: 0;
+    margin-block: 2;
+}
