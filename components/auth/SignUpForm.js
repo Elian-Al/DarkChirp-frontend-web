@@ -8,6 +8,7 @@ const SignUpForm = ({ toggleMode }) => {
     const [username, setUsername] = useState('');
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -19,7 +20,7 @@ const SignUpForm = ({ toggleMode }) => {
         setSuccess('');
         setIsLoading(true);
 
-        const result = await signUp({ username, firstname, lastname, password });
+        const result = await signUp({ username, firstname, lastname, email, password });
 
         if (result.success) {
             setSuccess('Inscription réussie ! Veuillez vous connecter.');
@@ -39,6 +40,7 @@ const SignUpForm = ({ toggleMode }) => {
             <Input type='text' placeholder='Prénom' value={firstname} onChange={(e) => setFirstname(e.target.value)} required />
             <Input type='text' placeholder='Nom' value={lastname} onChange={(e) => setLastname(e.target.value)} required />
             <Input type='text' placeholder="Nom d'utilisateur" value={username} onChange={(e) => setUsername(e.target.value)} required />
+            <Input type='email' placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             <Input type='password' placeholder='Mot de passe' value={password} onChange={(e) => setPassword(e.target.value)} required />
 
             <Button type='submit' disabled={isLoading || success}>

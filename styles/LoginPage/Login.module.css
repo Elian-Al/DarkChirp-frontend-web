@@ -1,0 +1,68 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* width: 40vw; */
+  /* min-height: 100vh; */
+  /* padding: 4rem 0; */
+  background-color: #00336d;
+}
+
+.leftSide {
+  /* border: 1px solid red; */
+  width: 45vw;
+  background-image: url('../../public/Background_DarkChirp.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  padding-top: 100px;
+}
+
+/* .responsiveLogo {
+  width: 50%;
+  max-width: 250px;
+  height: 50%;
+} */
+
+.rightSide {
+  /* border: 1px solid yellow; */
+  width: 55vw;
+  min-height: 100vh;
+  background-color: #191d20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+}
+
+.loginContainer {
+  border : 3px solid rgb(65, 65, 65);
+  border-radius: 5px;
+  height: 90vh;
+  width: 50vw;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 40px;
+}
+
+.redirectHome {
+    /* border: 1px solid red; */
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    /* justify-content: flex-end; */
+    /* align-items: flex-end; */
+    /* align-content: flex-end; */
+    align-self: flex-end;
+    /* margin-top: auto; */
+    /* justify-self: flex-end; */
+    /* margin: 10px; */
+}

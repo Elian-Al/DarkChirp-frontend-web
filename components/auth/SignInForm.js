@@ -23,9 +23,11 @@ const SignInForm = ({ toggleMode, onSuccess }) => {
         const result = await signIn({ username, password });
 
         if (result.success) {
-            login(result.token, { username: result.username})
+            console.log('Connexion :', result);
+            
+            login(result.token, result)
             onSuccess();
-            router.push('/home');
+            router.push('/Home');
         } else {
             setError(result.message);
         }
