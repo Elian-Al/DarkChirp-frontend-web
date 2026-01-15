@@ -2,13 +2,27 @@ import styles from '../styles/ProfilePage/Profile.module.css';
 import { useEffect, useState } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
+import { postService } from '../services/postService';
 import useAuthStore from '../stores/authStore';
 import Posts from '../components/Posts'
 import Button from '../components/UI/Button'
 
 function Profile() {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const user = useAuthStore((state) => state);
+  const token = user.token;  
+
+  const fetchUserPosts = async ( token, skip, limit) => {    
+
+    const data = await postService.getUserPosts(token, skip, limit);
+    console.log(data.result.data);
+    setPosts(...posts, data.result.data);
+  };
+
+  useEffect(() => {
+    fetchUserPosts(token);
+  }, []);
 
   return (
     <div className={styles.main}>
@@ -54,7 +68,7 @@ function Profile() {
               content={post.content}
               profilePicture={post.user.profilePicture}
               postId={post._id}
-              onPostDeleted={fetchPosts}
+              onPostDeleted={fetchUserPosts}
             />
           ))}
         </div>
