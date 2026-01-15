@@ -70,7 +70,26 @@ export const postService = {
         } catch (error) {
             return { success: false, message: error.message }
         }
-    }
+    },
+
+    async getUserPosts(token, skip, limit) {
+        try {
+            const response = await fetch(`${API_URL}/posts/user?skip=${skip}&limit=${limit}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const result = await response.json();
+            // console.log(result);
+            
+            return { success: response.ok, result }
+        } catch (error) {
+            return { success: false, message: error.message }
+        }
+    },
 
 
 };
