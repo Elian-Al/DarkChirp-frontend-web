@@ -7,7 +7,7 @@
 
 .leftPart {
   background-color: #191d20;
-  width: 20vw;
+  width: 20%;
   height: auto;
 }
 
@@ -23,7 +23,7 @@
 
 .postsPart {
   background-color: #191d20;
-  width: 60vw;
+  width: 60%;
   height: auto;
   border-left: 3px solid rgb(65, 65, 65);
   border-right: 3px solid rgb(65, 65, 65);
@@ -34,9 +34,9 @@
 }
 
 .newPost {
-  border: 1px solid green;
+  border-block: 3px solid rgb(65, 65, 65);
   width: 100%;
-  height: 30vh;
+  max-height: 50vh;
   display: flex;
   justify-content: center;
 }
@@ -50,6 +50,6 @@
 .rightPart {
   background-color: #191d20;
   display: flex;
-  width: auto;
+  width: 20%;
   height: auto;
 }
