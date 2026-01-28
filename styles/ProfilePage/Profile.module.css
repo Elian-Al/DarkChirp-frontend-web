@@ -26,14 +26,15 @@
 }
 
 .userInfo {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   min-height: 150;
 }
 
 .avatarContainer {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  margin-inline: 10;
 }
 
 .avatar {
@@ -42,15 +43,15 @@
 }
 
 .name {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-inline-start: 10;
+  margin-inline: 10;
 }
 
 .postPart {
-  border: 1px solid blue;
+  border: 3px solid rgb(65, 65, 65);
   display: flex;
   justify-content: space-around;
   align-items: center;

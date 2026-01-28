@@ -4,25 +4,56 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { postService } from '../services/postService';
 import useAuthStore from '../stores/authStore';
+import { useRouter } from 'next/router';
 import Posts from '../components/Posts'
 import Button from '../components/UI/Button'
 
 function Profile() {
+  const [activeTab, setActiveTab] = useState('mine');
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [skip, setSkip] = useState(0);
+  const limit = 10;
   const user = useAuthStore((state) => state);
-  const token = user.token;  
+  const token = user.token;
+  const router = useRouter();
+  const logout = useAuthStore((state) => state.logout);
 
-  const fetchUserPosts = async ( token, skip, limit) => {    
+  // if (!token) {router.push('/')};
 
-    const data = await postService.getUserPosts(token, skip, limit);
-    console.log(data.result.data);
-    setPosts(...posts, data.result.data);
+  const fetchUserPosts = async () => {
+    if (isLoading) return;
+
+    setIsLoading(true);
+    
+    try {
+      const data = await postService.getUserPosts({token, tab: activeTab, skip, limit});
+      
+      console.log('data :', data);      
+  
+      if (data.success) {
+        setPosts(prevPosts => [...prevPosts, ...data.result.data]);
+        setSkip(posts.length);
+      };
+    } finally {
+      setIsLoading(false);
+    };
   };
 
+  const handleTabChange = (tabSet) => {
+    setPosts([]);
+    setSkip(0);
+    setActiveTab(tabSet);
+  };
+
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  }
+
   useEffect(() => {
-    fetchUserPosts(token);
-  }, []);
+    fetchUserPosts();
+  }, [activeTab]);
 
   return (
     <div className={styles.main}>
@@ -43,8 +74,8 @@ function Profile() {
           <div className={styles.avatarContainer}>
             <Image          
               src={user.profilePicture || '/Default-Avatar.svg'}
-              width={150}
-              height={150}
+              width={130}
+              height={130}
               alt="User Avatar"
               className={styles.avatar}
             />
@@ -55,11 +86,12 @@ function Profile() {
           </div>
         </div>
         <div className={styles.postPart}>
-          <strong className={styles.firstname}>Mes Posts</strong>
-          <strong className={styles.firstname}>Posts Likés</strong>
-          <strong className={styles.firstname}>Posts Enregistrés</strong>
+          <strong className={activeTab === 'mine' ? styles.active : ''} onClick={() => handleTabChange('mine')}>Mes Posts</strong>
+          <strong className={activeTab === 'liked' ? styles.active : ''} onClick={() => handleTabChange('liked')}>Posts Likés</strong>
+          <strong className={activeTab === 'saved' ? styles.active : ''} onClick={() => handleTabChange('saved')}>Posts Enregistrés</strong>
         </div>
         <div className={styles.displayPosts}>
+          <p>{posts.length}</p>
           {posts.map(post => (
             <Posts
               key={post._id}
@@ -71,11 +103,12 @@ function Profile() {
               onPostDeleted={fetchUserPosts}
             />
           ))}
+          <Button onClick={fetchUserPosts}>Charger plus de posts</Button>
         </div>
       </div>
       <div className={styles.rightPart}>
         <div className={styles.actionButton}>          
-          <Button>Se déconnecter</Button>
+          <Button onClick={handleLogout}>Se déconnecter</Button>
           <Button>Supprimer le compte</Button>
         </div>
       </div>
