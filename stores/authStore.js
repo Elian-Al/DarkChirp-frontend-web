@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { fetchMe } from '../services/authService'
 
 const initialState = {
     token: null,
@@ -18,25 +19,33 @@ const useAuthStore = create((set) => ({
         set({
             token: token,
             isAuthenticated: true,
-            username: userData.username,
-            firstname: userData.firstname,
-            lastname: userData.lastname,
-            email: userData.email,
-            profilePicture: userData.profilePicture,
+            ...userData,
         });        
     },
     logout: () => {
         localStorage.removeItem('token');
         set(initialState);
     },
-    hydrate: () => {
+    hydrate: async () => {
         const token = localStorage.getItem('token');
-        if (token) {
-            set({
-                token: token,
-                isAuthenticated: true,
-            });
-        }
+
+        if (!token) return;
+
+        try {
+            const userData = await fetchMe(token);
+            console.log(userData.data.userData);
+            
+            if (token && userData) {
+                set({
+                    token: token,
+                    isAuthenticated: true,
+                    ...userData.data.userData,
+                });
+                console.log('Hydrate done');            
+            }
+        } catch (error) {
+            console.error('Erreur d\'hydratation', error);                         
+        }        
     },
 }));
 
