@@ -72,9 +72,9 @@ export const postService = {
         }
     },
 
-    async getUserPosts(token, skip, limit) {
+    async getUserPosts({token, tab, skip, limit}) {
         try {
-            const response = await fetch(`${API_URL}/posts/user?skip=${skip}&limit=${limit}`, {
+            const response = await fetch(`${API_URL}/posts/user/${tab}?skip=${skip}&limit=${limit}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,6 +90,14 @@ export const postService = {
             return { success: false, message: error.message }
         }
     },
+
+    async getLikedPosts(token, skip, limit) {
+        try {
+            const response = await fetch(`${API_URL}/posts/user/liked`)
+        } catch (error) {
+            return { success: false, message: error.message }
+        }
+    }
 
 
 };
