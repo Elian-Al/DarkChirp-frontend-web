@@ -5,9 +5,17 @@ import { postService } from '../services/postService';
 import useAuthStore from '../stores/authStore';
 import { useState } from 'react';
 
-const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDeleted}) => {
+const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDeleted, isLike, isSave}) => {
     const [isLoading, setIsLoading] = useState(false);
     const token = useAuthStore((state) => state.token);
+
+    const publicationDate = new Date(createdAt).toLocaleString(undefined, {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    });
 
     const action_type = {
         like: 'like',
@@ -56,14 +64,25 @@ const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDel
                     className={styles.responsiveLogo}
                 />}
                 <strong className={styles.firstname}>{firstname}</strong>
-                <p className={styles.publicationTime}>{createdAt}</p>
+                <p className={styles.publicationTime}>{publicationDate}</p>
             </div>
             <div className={styles.postContent}>
                 <p>{content}</p>
             </div>
             <div className={styles.postAction}>
-                <FaRegHeart onClick={() => handleInteractPost({type: action_type.like})}/>
-                <FaBookmark onClick={() => handleInteractPost({type: action_type.save})}/>
+                {isLike ? (
+                    <FaHeart 
+                        onClick={() => handleInteractPost({type: action_type.like})}
+                        color='red'
+                        style={{ cursor: 'pointer' }}
+                    />
+                ) : (
+                    <FaRegHeart 
+                        onClick={() => handleInteractPost({type: action_type.like})}
+                        style={{ cursor: 'pointer' }}
+                    />
+                )}
+                <FaBookmark onClick={() => handleInteractPost({type: action_type.save})} color={isSave ? '#FFD700' : 'white'}/>
                 <FaTrashAlt onClick={handleDeletePost} color={isLoading ? 'red' : 'white'}/>
             </div>
         </div>
