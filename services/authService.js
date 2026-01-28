@@ -30,3 +30,21 @@ export const signUp = async (credentials) => {
 export const signIn = async (credentials) => {
     return authFetch('/users/signin', credentials);
 };
+
+export const fetchMe = async (token) => {
+    try {
+        const response = await fetch(`${API_URL}/users/me`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        });
+
+        const data = await response.json();
+
+        return { success: true, data}
+    } catch (error) {
+        return { success: false, message: error.message }
+    }
+};
