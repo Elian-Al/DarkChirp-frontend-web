@@ -33,7 +33,7 @@ function Profile() {
   
       if (data.success) {
         setPosts(prevPosts => [...prevPosts, ...data.result.data]);
-        setSkip(posts.length);
+        setSkip(data.result.data.length);
       };
     } finally {
       setIsLoading(false);
@@ -91,7 +91,7 @@ function Profile() {
           <strong className={activeTab === 'saved' ? styles.active : ''} onClick={() => handleTabChange('saved')}>Posts Enregistrés</strong>
         </div>
         <div className={styles.displayPosts}>
-          <p>{posts.length}</p>
+          <p className={styles.postsNumber}>{posts.length} posts affichés</p>
           {posts.map(post => (
             <Posts
               key={post._id}
