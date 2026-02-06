@@ -1,6 +1,6 @@
 .main {
   display: flex;
-  background-color: #00336d;
+  background-color: #191d20;
   height: auto;
   min-height: 100vh;
 }
@@ -49,7 +49,19 @@
 
 .rightPart {
   background-color: #191d20;
-  display: flex;
+  /* display: flex; */
+  /* flex-direction: row; */
   width: 20%;
   height: auto;
+  /* border: 1px solid red; */
+  padding-inline: 15;
+  padding-block: 10;
+}
+
+.tags {
+  /* border: 1px solid rgb(0, 255, 55); */
+  display: flex;
+  flex-direction: column;
+  gap: 10;
+  padding-top: 20;
 }

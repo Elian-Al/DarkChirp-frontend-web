@@ -1,20 +1,24 @@
 import styles from '../styles/HomePage/Home.module.css';
 import { useEffect, useState } from 'react';
 import { postService } from '../services/postService';
-import Posts from '../components/Posts'
-import NewPost from '../components/newPost'
+import Posts from '../components/Posts';
+import NewPost from '../components/newPost';
+import Tags from '../components/tag';
 import ProfileCard from './ProfileCard';
 import Image from 'next/image'
 import useAuthStore from '../stores/authStore';
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [tags, setTags] = useState([]);
   const user = useAuthStore((state) => state);
 
   const fetchPosts = async () => {
     const data = await postService.getAllPosts();
     setPosts(data.data);
-    console.log('posts :', data);      
+    
+    const tagsList = await postService.getTrendingHashtag();
+    setTags(tagsList.data)
   };
 
   useEffect(() => {
@@ -30,6 +34,7 @@ function Home() {
             width={70}
             height={70}
             alt="DarkChirp Logo"
+            priority
           />
         </div>
         <div className={styles.profilePart}>
@@ -42,21 +47,41 @@ function Home() {
           <NewPost onPostCreated={fetchPosts} />
         </div>
         <div className={styles.displayPosts}>
-          {posts.map(post => (
-            <Posts
-              key={post._id}
-              firstname={post.user.firstname}
-              createdAt={post.createdAt}
-              content={post.content}
-              profilePicture={post.user.profilePicture}
-              postId={post._id}
-              onPostDeleted={fetchPosts}
-            />
-          ))}
+          {posts.map(post => {
+            const isLike = user.likedPosts?.includes(post._id)
+            const isSave = user.savedPosts?.includes(post._id)
+
+            return (
+              <Posts
+                key={post._id}
+                firstname={post.user.firstname}
+                createdAt={post.createdAt}
+                content={post.content}
+                profilePicture={post.user.profilePicture}
+                postId={post._id}
+                onPostDeleted={fetchPosts}
+                isLike={isLike}
+                isSave={isSave}
+                likeNbr={post.likes.length < 1000 ? `${post.likes.length}` : `${post.likes.length}k`}
+                saveNbr={post.saved.length < 1000 ? `${post.saved.length}` : `${post.saved.length}k`}
+              />
+            )
+          })}
         </div>
       </div>
       <div className={styles.rightPart}>
-        Trend
+        Trending Hashtag
+        <div className={styles.tags}>
+          {tags.map(tag => {
+            return (
+              <Tags
+                key={tag._id}
+                name={tag.name}
+                count={tag.count}
+              />
+            )
+          })}
+        </div>
       </div>
     </div>
   );
