@@ -1,12 +1,26 @@
+.cardLink {
+    text-decoration: none;
+    color: inherit;
+}
+.cardLink:hover {
+    opacity: 0.8;
+}
+
 .profileCard {
     display: flex;
     align-items: center;
     border: 3px solid rgb(65, 65, 65);
     border-radius: 15;
+    margin-inline: 10;
+    min-width: fit-content;
+}
+
+.profileCard:hover {
+    /* border: 3px solid rgb(114, 114, 114); */
 }
 
 .avatar {
-    border-radius: 50;
+    border-radius: 50%;
     margin-inline: 15px;
     margin-block: 10px;
 }

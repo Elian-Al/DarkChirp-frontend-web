@@ -5,14 +5,18 @@ import Link from 'next/link'
 import { postService } from '../services/postService';
 import useAuthStore from '../stores/authStore';
 import { useRouter } from 'next/router';
-import Posts from '../components/Posts'
-import Button from '../components/UI/Button'
+import Posts from '../components/Posts';
+import Button from '../components/UI/Button';
+import ConfirmModal from './ConfirmModal';
 
 function Profile() {
   const [activeTab, setActiveTab] = useState('mine');
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [skip, setSkip] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
   const limit = 10;
   const user = useAuthStore((state) => state);
   const token = user.token;
@@ -49,7 +53,15 @@ function Profile() {
   const handleLogout = () => {
     logout();
     router.push('/');
-  }
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     fetchUserPosts();
@@ -109,9 +121,13 @@ function Profile() {
       <div className={styles.rightPart}>
         <div className={styles.actionButton}>          
           <Button onClick={handleLogout}>Se déconnecter</Button>
-          <Button>Supprimer le compte</Button>
+          <Button onClick={handleOpenModal}>Supprimer le compte</Button>
         </div>
       </div>
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }
