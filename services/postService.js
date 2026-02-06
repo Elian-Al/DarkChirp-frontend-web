@@ -72,6 +72,34 @@ export const postService = {
         }
     },
 
+    async getTrendingHashtag() {
+        try {
+            const response = await fetch(`${API_URL}/posts/trendingHashtags`)
+
+            const data = await response.json();
+
+            console.log('dataTags:', data)
+
+            return { success: response.ok, data: data.trendingHashtags }
+        } catch (error) {
+            return { success: false, message: error.message }
+        }
+    },
+
+    async getPostsByHashtag(name) {
+        try {
+            const response = await fetch(`${API_URL}/posts/hashtag/${name}`)
+
+            const data = await response.json();
+
+            console.log('posthash:', data);
+
+            return { success: response.ok, data: data.data}
+        } catch (error) {
+            return { success: false, message: error.message }
+        }
+    },
+
     async getUserPosts({token, tab, skip, limit}) {
         try {
             const response = await fetch(`${API_URL}/posts/user/${tab}?skip=${skip}&limit=${limit}`, {

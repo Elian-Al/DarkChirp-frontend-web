@@ -4,10 +4,12 @@ import { FaTrashAlt, FaBookmark, FaRegHeart, FaHeart } from "react-icons/fa";
 import { postService } from '../services/postService';
 import useAuthStore from '../stores/authStore';
 import { useState } from 'react';
+import { formatContent } from './utils/hashtagLink';
 
-const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDeleted, isLike, isSave}) => {
+const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDeleted, isLike, isSave, likeNbr, saveNbr}) => {
     const [isLoading, setIsLoading] = useState(false);
     const token = useAuthStore((state) => state.token);
+    let trashColor = 'white';
 
     const publicationDate = new Date(createdAt).toLocaleString(undefined, {
         day: '2-digit',
@@ -42,10 +44,12 @@ const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDel
     const handleDeletePost = async () => {
 
         setIsLoading(true);
+        trashColor = 'red';
 
-        const result = await postService.deletePost(postId, token)
+        const result = await postService.deletePost(postId, token);
 
         if (result.success) {
+
             if (onPostDeleted) onPostDeleted();
         } else {
             alert('Erreur lors de la suppression du post :' + result.message);
@@ -67,23 +71,29 @@ const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDel
                 <p className={styles.publicationTime}>{publicationDate}</p>
             </div>
             <div className={styles.postContent}>
-                <p>{content}</p>
+                <p>{formatContent(content)}</p>
             </div>
             <div className={styles.postAction}>
-                {isLike ? (
-                    <FaHeart 
-                        onClick={() => handleInteractPost({type: action_type.like})}
-                        color='red'
-                        style={{ cursor: 'pointer' }}
-                    />
-                ) : (
-                    <FaRegHeart 
-                        onClick={() => handleInteractPost({type: action_type.like})}
-                        style={{ cursor: 'pointer' }}
-                    />
-                )}
-                <FaBookmark onClick={() => handleInteractPost({type: action_type.save})} color={isSave ? '#FFD700' : 'white'}/>
-                <FaTrashAlt onClick={handleDeletePost} color={isLoading ? 'red' : 'white'}/>
+                <div className={styles.interaction}>
+                    {isLike ? (
+                        <FaHeart 
+                            onClick={() => handleInteractPost({type: action_type.like})}
+                            color='red'
+                            style={{ cursor: 'pointer' }}
+                        />
+                    ) : (
+                        <FaRegHeart 
+                            onClick={() => handleInteractPost({type: action_type.like})}
+                            style={{ cursor: 'pointer' }}
+                        />
+                    )}
+                    <p className={styles.nbr}>{likeNbr}</p>
+                </div>
+                <div className={styles.interaction}>
+                    <FaBookmark onClick={() => handleInteractPost({type: action_type.save})} color={isSave ? '#FFD700' : 'white'} style={{ cursor: 'pointer' }}/>
+                    <p className={styles.nbr}>{saveNbr}</p>
+                </div>
+                <FaTrashAlt onClick={handleDeletePost} color={trashColor}/>
             </div>
         </div>
     )

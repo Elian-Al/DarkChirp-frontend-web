@@ -1,0 +1,16 @@
+.tag {
+    border: 1px solid rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 10;
+    margin: 0;
+    /* padding: 0; */
+    width: fit-content;
+}
+
+.hashtag {
+    margin: 10;
+}

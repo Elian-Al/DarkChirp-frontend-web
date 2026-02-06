@@ -1,6 +1,6 @@
 .main {
   display: flex;
-  background-color: #00336d;
+  background-color: #191d20;
   height: auto;
   min-height: 100vh;
 }
@@ -51,17 +51,30 @@
 }
 
 .postPart {
-  border: 3px solid rgb(65, 65, 65);
+  border-block: 3px solid rgb(65, 65, 65);
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 6vh;
 }
 
+.postPart:hover {
+  cursor: pointer;
+}
+
 .displayPosts {
   /* border: 1px solid greenyellow; */
   width: 100%;
   height: auto;
+}
+
+.postsNumber {
+  margin: 0;
+  height: 35;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .rightPart {

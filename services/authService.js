@@ -43,6 +43,10 @@ export const fetchMe = async (token) => {
 
         const data = await response.json();
 
+        if (!data.result) {
+            return { success: false, message: data.message}
+        }
+
         return { success: true, data}
     } catch (error) {
         return { success: false, message: error.message }

@@ -33,9 +33,15 @@ const useAuthStore = create((set) => ({
 
         try {
             const userData = await fetchMe(token);
-            console.log(userData.data.userData);
+            console.log('hyrate:', userData);
+
+            if (!userData.success) {
+                localStorage.removeItem('token');
+                // localStorage.clear(); //A tester
+                console.log('LocalStorage Cleared');                
+            };
             
-            if (token && userData) {
+            if (token && userData.success) {
                 set({
                     token: token,
                     isAuthenticated: true,
