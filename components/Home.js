@@ -64,6 +64,7 @@ function Home() {
                 isSave={isSave}
                 likeNbr={post.likes.length < 1000 ? `${post.likes.length}` : `${post.likes.length}k`}
                 saveNbr={post.saved.length < 1000 ? `${post.saved.length}` : `${post.saved.length}k`}
+                isAuthor={post.user.username === user.username ? true : false}
               />
             )
           })}

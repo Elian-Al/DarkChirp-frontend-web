@@ -6,7 +6,7 @@ import useAuthStore from '../stores/authStore';
 import { useState } from 'react';
 import { formatContent } from './utils/hashtagLink';
 
-const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDeleted, isLike, isSave, likeNbr, saveNbr}) => {
+const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDeleted, isLike, isSave, likeNbr, saveNbr, isAuthor}) => {
     const [isLoading, setIsLoading] = useState(false);
     const token = useAuthStore((state) => state.token);
     let trashColor = 'white';
@@ -93,7 +93,7 @@ const Posts = ({profilePicture, firstname, createdAt, content, postId, onPostDel
                     <FaBookmark onClick={() => handleInteractPost({type: action_type.save})} color={isSave ? '#FFD700' : 'white'} style={{ cursor: 'pointer' }}/>
                     <p className={styles.nbr}>{saveNbr}</p>
                 </div>
-                <FaTrashAlt onClick={handleDeletePost} color={trashColor}/>
+                { isAuthor && <FaTrashAlt onClick={handleDeletePost} color={trashColor} /> }
             </div>
         </div>
     )
