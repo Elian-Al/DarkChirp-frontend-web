@@ -52,3 +52,26 @@ export const fetchMe = async (token) => {
         return { success: false, message: error.message }
     }
 };
+
+export const deleteAccount = async (token, password) => {
+    try {
+        const response = await fetch(`${API_URL}/users/delete-account`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ password }),
+        });
+
+        const data = await response.json();
+
+        if (!data.result) {
+            return { success: false, message: data.message };
+        }
+
+        return { success: true, data }
+    } catch (error) {
+        return { success: false, message: error.message }
+    }
+};

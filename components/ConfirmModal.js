@@ -3,12 +3,12 @@ import { useState } from 'react';
 import Button from '../components/UI/Button'
 import Input from './UI/Input';
 
-const ConfirmModal = ({ isOpen, onClose }) => {
+const ConfirmModal = ({ isOpen, onClose, submitDeleteAccount }) => {
     const [password, setPassword] = useState('');
 
     if (!isOpen) {
         return null;
-    }
+    };    
 
     return (
         <div className={styles.modalOverlay} onClick={onClose}>
@@ -20,7 +20,7 @@ const ConfirmModal = ({ isOpen, onClose }) => {
                 <Input type='password' placeholder='Mot de passe' value={password} onChange={(e) => setPassword(e.target.value)} required />
                 <div className={styles.actionButton}>
                     <Button onClick={onClose}>Annuler</Button>
-                    <Button>Confirmer</Button>
+                    <Button onClick={() => submitDeleteAccount(password)}>Confirmer</Button>
                 </div>
             </div>
         </div>

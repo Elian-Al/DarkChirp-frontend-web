@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import Posts from '../components/Posts';
 import Button from '../components/UI/Button';
 import ConfirmModal from './ConfirmModal';
+import { deleteAccount } from '../services/authService'
 
 function Profile() {
   const [activeTab, setActiveTab] = useState('mine');
@@ -61,6 +62,17 @@ function Profile() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleDeleteAccount = async (password) => {
+    const result = await deleteAccount(token, password);
+    
+    if (result.success) {
+      logout();
+      router.push('/');
+    } else {
+      alert(result.message);
+    }
   };
 
   useEffect(() => {
@@ -127,6 +139,7 @@ function Profile() {
       <ConfirmModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
+        submitDeleteAccount={(password) => handleDeleteAccount(password)}
       />
     </div>
   );
