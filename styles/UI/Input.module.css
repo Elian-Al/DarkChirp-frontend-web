@@ -8,10 +8,11 @@
     /* outline: none; */
     border: 3px solid rgb(65, 65, 65);
     color: rgb(255, 0, 0) !important;
+    padding-left: 10;
 }
 
 .input::placeholder {
-    color: rgba(255, 0, 0, 0.555); /* Couleur rouge, mais légèrement transparente pour le placeholder */
+    color: rgba(202, 202, 202, 0.555); /* Couleur rouge, mais légèrement transparente pour le placeholder */
     opacity: 1; /* Parfois nécessaire pour override les navigateurs */
 }
 
