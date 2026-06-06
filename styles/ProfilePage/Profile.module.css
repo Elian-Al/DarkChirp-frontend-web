@@ -1,93 +1,117 @@
 .main {
-  display: flex;
-  background-color: #191d20;
-  height: auto;
-  min-height: 100vh;
+    display: flex;
+    background-color: #191d20;
+    height: auto;
+    min-height: 100vh;
 }
 
 .leftPart {
-  background-color: #191d20;
-  width: 20vw;
-  height: auto;
+    background-color: #191d20;
+    width: 20vw;
+    height: auto;
 }
 
 .logoPart {
-  /* border: 1px solid red; */
-  margin-inline-start: 15;
-  margin-block: 10;
+    /* border: 1px solid red; */
+    margin-inline-start: 15;
+    margin-block: 10;
 }
 
 .userPart {
-  background-color: #191d20;
-  width: 60vw;
-  height: auto;
-  border-left: 3px solid rgb(65, 65, 65);
-  border-right: 3px solid rgb(65, 65, 65);
+    background-color: #191d20;
+    width: 60vw;
+    height: auto;
+    border-left: 3px solid rgb(65, 65, 65);
+    border-right: 3px solid rgb(65, 65, 65);
 }
 
 .userInfo {
-  /* border: 1px solid red; */
-  display: flex;
-  align-items: center;
-  min-height: 150;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    min-height: 150;
 }
 
 .avatarContainer {
-  /* border: 1px solid red; */
-  margin-inline: 10;
+    /* border: 1px solid red; */
+    margin-inline: 10;
+    position: relative;
+    display: flex;
 }
 
 .avatar {
-  border-radius: 50%;
-  /* border: 1px solid red; */
+    border-radius: 50%;
+    object-fit: cover;
+    /* border: 1px solid red; */
+}
+
+.setAvatar {
+    position: absolute;
+    display: flex;
+    bottom: 0px;
+    right: 0px;
 }
 
 .name {
-  /* border: 1px solid red; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-inline: 10;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-inline: 10;
 }
 
 .postPart {
-  border-block: 3px solid rgb(65, 65, 65);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 6vh;
+    border-block: 3px solid rgb(65, 65, 65);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 6vh;
 }
 
 .postPart:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .displayPosts {
-  /* border: 1px solid greenyellow; */
-  width: 100%;
-  height: auto;
+    /* border: 1px solid greenyellow; */
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20;
+    padding: 15;
 }
 
 .postsNumber {
-  margin: 0;
-  height: 35;
-  /* border: 1px solid red; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    margin: 0;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
+.loadMoreButtonArea {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    margin-block-end: 20;
 }
 
 .rightPart {
-  background-color: #191d20;
-  width: 20vw;
-  height: auto;
+    background-color: #191d20;
+    width: 20vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .actionButton {
-  /* border: 1px solid red; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20;
-  gap: 15;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20;
+    gap: 15;
+    width: 90%;
 }
