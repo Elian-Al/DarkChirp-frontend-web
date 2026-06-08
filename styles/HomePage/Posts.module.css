@@ -1,73 +1,72 @@
 .post {
-    border: 1px solid rgba(255, 0, 0, 0.7);
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-    width: 95%;
-    height: auto;
-    padding-inline: 15;
-    padding-block: 10;
-    /* margin: 15; */
-    border-radius: 10px;
+  border: 1px solid rgba(255, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+  width: 95%;
+  height: auto;
+  padding-inline: 15;
+  padding-block: 10;
+  /* margin: 15; */
+  border-radius: 10px;
 }
 
 .postAuthor {
-    /* border: 1px solid blue; */
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  /* border: 1px solid blue; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .responsiveLogo {
-    margin-inline: 10px;
-    border-radius: 50%;
-    /* object-fit: cover; */
+  margin-inline: 10px;
+  border-radius: 50%;
+  /* object-fit: cover; */
 }
 
 .firstname {
-    margin-inline: 10px;
+  margin-inline: 10px;
 }
 
 .publicationTime {
-    margin-inline: 10px;
-    color: rgb(146, 146, 146);
+  margin-inline: 10px;
+  color: rgb(146, 146, 146);
 }
 
 .separation {
-    display: flex;
-    border-top: 2px solid rgb(65, 65, 65);
-    margin-top: 10;
+  display: flex;
+  border-top: 2px solid rgb(65, 65, 65);
+  margin-top: 10;
 }
 
 .postContentContainer {
-    /* border: 1px solid rgb(43, 122, 226); */
-    max-width: 100%;
-    height: auto;
-    overflow-wrap: break-word;
+  /* border: 1px solid rgb(43, 122, 226); */
+  max-width: 100%;
+  height: auto;
 }
 
 .postContent {
-    /* border: 1px solid blueviolet; */
-    margin: 10;
-    overflow-wrap: inherit;
+  /* border: 1px solid blueviolet; */
+  margin: 10;
+  overflow-wrap: anywhere;
 }
 
 .postAction {
-    /* border: 1px solid yellow; */
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 4;
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 4;
 }
 
 .interaction {
-    /* border: 1px solid red; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nbr {
-    /* border: 1px solid blue; */
-    margin: 0;
-    font-size: small;
+  /* border: 1px solid blue; */
+  margin: 0;
+  font-size: small;
 }

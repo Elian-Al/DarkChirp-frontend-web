@@ -90,8 +90,8 @@ function Profile() {
     }
   };
 
-  const currentTabPosts =
-    activeTab === "mine" ? posts : activeTab === "liked" ? likedPosts : savedPosts;
+  // const currentTabPosts =
+  //   activeTab === "mine" ? posts : activeTab === "liked" ? likedPosts : savedPosts;
 
   const handleTabChange = (tabSet) => {
     setPosts([]);
@@ -188,7 +188,13 @@ function Profile() {
           {isLoading && posts.length === 0 ? (
             <span>Chargement des posts en cours...</span>
           ) : (
-            <p className={styles.postsNumber}>{posts.length} posts affichés</p>
+            <p className={styles.postsNumber}>
+              {posts.length === 1
+                ? `${posts.length} post affichés`
+                : posts.length === 0
+                  ? ""
+                  : `${posts.length} posts affichés`}
+            </p>
           )}
 
           {posts.map((post) => {
