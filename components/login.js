@@ -12,13 +12,7 @@ function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState("signin");
 
-  const redirectHome = () => {
-    router.push("/Home");
-  };
-
   const handleOpenModal = (mode) => {
-    console.log(`${mode} clicked`);
-
     setAuthMode(mode);
     setIsModalOpen(true);
   };
@@ -43,11 +37,13 @@ function Login() {
 
           <Button onClick={() => handleOpenModal("signin")}>Se connecter</Button>
         </div>
-        <div className={styles.redirectHome}>
-          <Button onClick={redirectHome}>Home</Button>
-        </div>
       </div>
-      <AuthModal isOpen={isModalOpen} onClose={handleCloseModal} mode={authMode} onSwitchMode={setAuthMode} />
+      <AuthModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        mode={authMode}
+        onSwitchMode={setAuthMode}
+      />
     </div>
   );
 }
