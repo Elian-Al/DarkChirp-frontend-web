@@ -9,17 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^16.1.6",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
-    "react-icons": "^5.5.0",
-    "zustand": "^5.0.9"
+    "next": "^16.2.7",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "react-icons": "^5.6.0",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "baseline-browser-mapping": "^2.9.19",
-    "jest": "^30.2.0",
-    "jest-environment-jsdom": "^30.2.0"
+    "@testing-library/react": "^16.3.2",
+    "baseline-browser-mapping": "^2.10.34",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1"
   }
 }
