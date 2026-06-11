@@ -1,13 +1,12 @@
 .title {
-    width: 90%;
-    text-align: center;
-    padding-right: 30;
+  width: 90%;
+  text-align: center;
 }
 
 .actionButton {
-    /* border: 1px solid blue; */
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    /* gap: 20; */
+  /* border: 1px solid blue; */
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  /* gap: 20; */
 }
