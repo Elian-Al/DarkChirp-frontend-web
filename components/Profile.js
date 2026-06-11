@@ -82,22 +82,6 @@ function Profile() {
     router.push("/");
   };
 
-  const handleOpenDeleteModal = () => {
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false);
-  };
-
-  const handleOpenUploadModal = () => {
-    setIsUploadModalOpen(true);
-  };
-
-  const handleCloseUploadModal = () => {
-    setIsUploadModalOpen(false);
-  };
-
   const handleOpenModal = (type) => {
     if (type === "Upload") setIsUploadModalOpen(true);
     if (type === "Delete") setIsDeleteModalOpen(true);
@@ -145,7 +129,7 @@ function Profile() {
               className={styles.avatar}
             />
             <div className={styles.setAvatar}>
-              <FaEdit onClick={() => handleOpenUploadModal()} style={{ cursor: "pointer" }} />
+              <FaEdit onClick={() => handleOpenModal("Upload")} style={{ cursor: "pointer" }} />
             </div>
           </div>
           <div className={styles.name}>
@@ -236,12 +220,12 @@ function Profile() {
       </div>
       <AccountDeletion
         isOpen={isDeleteModalOpen}
-        onClose={handleCloseDeleteModal}
+        onClose={() => handleCloseModal("Delete")}
         submitDeleteAccount={(password) => handleDeleteAccount(password)}
       />
       <UploadProfileImage
         isOpen={isUploadModalOpen}
-        onClose={handleCloseUploadModal}
+        onClose={() => handleCloseModal("Upload")}
         onSuccess={() => fetchUserPosts()}
       />
       <PasswordChange
