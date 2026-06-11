@@ -15,12 +15,12 @@ const withAuth = (WrappedComponent, authType = "private") => {
     useEffect(() => {
       hydrate();
       setIsCheckingAuth(false);
-    }, [hydrate]);
+    }, []);
 
     useEffect(() => {
-      if (isCheckingAuth) return;
+      if (isCheckingAuth || isAuthenticated === null) return;
 
-      if (authType === "private" && !isAuthenticated) {
+      if (authType === "private" && isAuthenticated === "false") {
         router.replace("/");
       }
 
