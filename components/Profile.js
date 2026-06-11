@@ -226,7 +226,7 @@ function Profile() {
       <UploadProfileImage
         isOpen={isUploadModalOpen}
         onClose={() => handleCloseModal("Upload")}
-        onSuccess={() => fetchUserPosts()}
+        onSuccess={() => fetchUserPosts(0, posts.length, true)}
       />
       <PasswordChange
         isOpen={isPasswordChangeModalOpen}
