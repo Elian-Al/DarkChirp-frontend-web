@@ -12,6 +12,7 @@ import AccountDeletion from "./modalContent/AccountDeletion";
 import { deleteAccount } from "../services/authService";
 import { FaPen, FaEdit } from "react-icons/fa";
 import UploadProfileImage from "./modalContent/UploadProfileImage";
+import PasswordChange from "./modalContent/passwordChange";
 import withAuth from "./hoc/withAuth";
 
 function Profile() {
@@ -22,6 +23,7 @@ function Profile() {
   const [limit, setLimit] = useState(10);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [isPasswordChangeModalOpen, setIsPasswordChangeModalOpen] = useState(false);
 
   const skipRef = useRef(0);
   const limitRef = useRef(10);
@@ -60,30 +62,6 @@ function Profile() {
         if (reset) setPosts(data.result.data);
         else setPosts((prevPosts) => [...prevPosts, ...data.result.data]);
       }
-
-      // if (currentTabPosts.length === 0 || (skipForced && limitForced)) {
-      //     if (data.success && activeTab === "mine") {
-      //         setPosts([...data.result.data]);
-      //     } else if (data.success && activeTab === "liked") {
-      //         setLikedPosts([...data.result.data]);
-      //     } else if (data.success && activeTab === "saved") {
-      //         setSavedPosts([...data.result.data]);
-      //     }
-      // } else {
-      //     if (data.success && activeTab === "mine") {
-      //         setPosts((prevPosts) => [...prevPosts, ...data.result.data]);
-      //     } else if (data.success && activeTab === "liked") {
-      //         setLikedPosts((prevPosts) => [...prevPosts, ...data.result.data]);
-      //     } else if (data.success && activeTab === "saved") {
-      //         setSavedPosts((prevPosts) => [...prevPosts, ...data.result.data]);
-      //     }
-      // }
-
-      // console.log("nbr of post receive:", data.result.data.length);
-
-      // console.log("current post in current tab:", currentTabPosts.length);
-
-      // setSkip(skip + data.result.data.length);
     } finally {
       hydrate();
       setIsLoading(false);
@@ -104,21 +82,32 @@ function Profile() {
     router.push("/");
   };
 
-  const handleOpenModal = () => {
+  const handleOpenDeleteModal = () => {
     setIsDeleteModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseDeleteModal = () => {
     setIsDeleteModalOpen(false);
   };
 
   const handleOpenUploadModal = () => {
     setIsUploadModalOpen(true);
-    console.log("Edit clicked");
   };
 
   const handleCloseUploadModal = () => {
     setIsUploadModalOpen(false);
+  };
+
+  const handleOpenModal = (type) => {
+    if (type === "Upload") setIsUploadModalOpen(true);
+    if (type === "Delete") setIsDeleteModalOpen(true);
+    if (type === "PasswordChange") setIsPasswordChangeModalOpen(true);
+  };
+
+  const handleCloseModal = (type) => {
+    if (type === "Upload") setIsUploadModalOpen(false);
+    if (type === "Delete") setIsDeleteModalOpen(false);
+    if (type === "PasswordChange") setIsPasswordChangeModalOpen(false);
   };
 
   const handleDeleteAccount = async (password) => {
@@ -239,21 +228,25 @@ function Profile() {
       <div className={styles.rightPart}>
         <div className={styles.actionButton}>
           <Button onClick={handleLogout}>Se déconnecter</Button>
-          <Button onClick={handleOpenModal}>Supprimer le compte</Button>
+          <Button onClick={() => handleOpenModal("PasswordChange")}>
+            Modifier le mot de passe
+          </Button>
+          <Button onClick={() => handleOpenModal("Delete")}>Supprimer le compte</Button>
         </div>
       </div>
-      {/* <ConfirmModal isOpen={isDeleteModalOpen} onClose={handleCloseModal} submitDeleteAccount={(password) => handleDeleteAccount(password)} /> */}
-      {/* <Modal isOpen={isDeleteModalOpen} onClose={handleCloseModal}>
-            </Modal> */}
       <AccountDeletion
         isOpen={isDeleteModalOpen}
-        onClose={handleCloseModal}
+        onClose={handleCloseDeleteModal}
         submitDeleteAccount={(password) => handleDeleteAccount(password)}
       />
       <UploadProfileImage
         isOpen={isUploadModalOpen}
         onClose={handleCloseUploadModal}
         onSuccess={() => fetchUserPosts()}
+      />
+      <PasswordChange
+        isOpen={isPasswordChangeModalOpen}
+        onClose={() => handleCloseModal("PasswordChange")}
       />
     </div>
   );

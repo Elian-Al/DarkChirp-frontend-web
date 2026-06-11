@@ -3,6 +3,7 @@
   background-color: #191d20;
   height: auto;
   min-height: 100vh;
+  min-width: 775px;
 }
 
 .leftPart {
