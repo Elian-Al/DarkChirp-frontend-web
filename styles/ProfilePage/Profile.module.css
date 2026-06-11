@@ -8,7 +8,7 @@
 
 .leftPart {
   background-color: #191d20;
-  width: 20vw;
+  width: 20%;
   height: auto;
 }
 
@@ -20,7 +20,7 @@
 
 .userPart {
   background-color: #191d20;
-  width: 60vw;
+  width: 60%;
   height: auto;
   border-left: 3px solid rgb(65, 65, 65);
   border-right: 3px solid rgb(65, 65, 65);
@@ -69,8 +69,17 @@
   height: 6vh;
 }
 
+.postPart:last-child {
+  color: blue;
+}
+
 .postPart:hover {
   cursor: pointer;
+}
+
+.active {
+  color: rgba(255, 0, 0, 0.7);
+  /* text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); */
 }
 
 .displayPosts {
@@ -100,7 +109,7 @@
 
 .rightPart {
   background-color: #191d20;
-  width: 20vw;
+  width: 20%;
   height: auto;
   display: flex;
   flex-direction: column;
