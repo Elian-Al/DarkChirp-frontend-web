@@ -37,7 +37,7 @@ function Home() {
     <div className={styles.main}>
       <div className={styles.leftPart}>
         <div className={styles.logoPart}>
-          <Image src="/favicon.ico.png" width={70} height={70} alt="DarkChirp Logo" priority />
+          <Image src="/favicon.ico.png" width={70} height={70} alt="DarkChirp Logo" />
         </div>
         <div className={styles.profilePart}>
           <ProfileCard

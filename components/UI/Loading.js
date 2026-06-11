@@ -10,6 +10,7 @@ const Loading = ({ children, ...props }) => {
         width={100}
         height={100}
         alt="Loading Image"
+        unoptimized
       />
     </div>
   );

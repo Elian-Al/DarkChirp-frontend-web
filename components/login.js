@@ -24,7 +24,7 @@ function Login() {
   return (
     <div className={styles.main}>
       <div className={styles.leftSide}>
-        <Image src="/favicon.ico.png" width={250} height={250} alt="DarkChirp Logo" />
+        <Image src="/favicon.ico.png" width={250} height={250} alt="DarkChirp Logo" priority />
       </div>
       <div className={styles.rightSide}>
         <div className={styles.loginContainer}>
