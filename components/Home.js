@@ -53,40 +53,42 @@ function Home() {
           <NewPost onPostCreated={fetchPosts} />
         </div>
         <div className={styles.displayPosts}>
-          {isLoading ? (
+          {isLoading && posts.length === 0 ? (
             <span>Chargement des posts en cours...</span>
           ) : (
-            <>
-              {posts.length > 0 && (
-                <p className={styles.postsNumber}>{posts.length} posts affichés</p>
-              )}
-              {posts.map((post) => {
-                const isLike = user.likedPosts?.includes(post._id);
-                const isSave = user.savedPosts?.includes(post._id);
-
-                return (
-                  <Posts
-                    key={post._id}
-                    firstname={post.user.firstname}
-                    createdAt={post.createdAt}
-                    content={post.content}
-                    profilePicture={post.user.profilePicture}
-                    postId={post._id}
-                    onPostInteraction={fetchPosts}
-                    isLike={isLike}
-                    isSave={isSave}
-                    likeNbr={
-                      post.likes.length < 1000 ? `${post.likes.length}` : `${post.likes.length}k`
-                    }
-                    saveNbr={
-                      post.saved.length < 1000 ? `${post.saved.length}` : `${post.saved.length}k`
-                    }
-                    isAuthor={post.user.username === user.username ? true : false}
-                  />
-                );
-              })}
-            </>
+            <p className={styles.postsNumber}>
+              {posts.length === 1
+                ? `${posts.length} post affichés`
+                : posts.length === 0
+                  ? ""
+                  : `${posts.length} posts affichés`}
+            </p>
           )}
+          {posts.map((post) => {
+            const isLike = user.likedPosts?.includes(post._id);
+            const isSave = user.savedPosts?.includes(post._id);
+
+            return (
+              <Posts
+                key={post._id}
+                firstname={post.user.firstname}
+                createdAt={post.createdAt}
+                content={post.content}
+                profilePicture={post.user.profilePicture}
+                postId={post._id}
+                onPostInteraction={fetchPosts}
+                isLike={isLike}
+                isSave={isSave}
+                likeNbr={
+                  post.likes.length < 1000 ? `${post.likes.length}` : `${post.likes.length}k`
+                }
+                saveNbr={
+                  post.saved.length < 1000 ? `${post.saved.length}` : `${post.saved.length}k`
+                }
+                isAuthor={post.user.username === user.username ? true : false}
+              />
+            );
+          })}
         </div>
       </div>
       <div className={styles.rightPart}>
