@@ -20,6 +20,8 @@ const withAuth = (WrappedComponent, authType = "private") => {
     useEffect(() => {
       if (isCheckingAuth || isAuthenticated === null) return;
 
+      console.log(isAuthenticated);
+
       if (authType === "private" && isAuthenticated === "false") {
         router.replace("/");
       }
