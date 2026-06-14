@@ -32,6 +32,8 @@ const useAuthStore = create((set) => ({
     const token = localStorage.getItem("token");
 
     if (!token) {
+      console.log("Hydrate no token");
+
       set({ isAuthenticated: false });
       return;
     }

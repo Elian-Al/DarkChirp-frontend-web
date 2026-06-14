@@ -23,6 +23,8 @@ const withAuth = (WrappedComponent, authType = "private") => {
       console.log(isAuthenticated);
 
       if (authType === "private" && isAuthenticated === "false") {
+        console.log("private");
+
         router.replace("/");
       }
 
