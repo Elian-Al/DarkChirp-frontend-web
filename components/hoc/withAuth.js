@@ -17,7 +17,7 @@ const withAuth = (WrappedComponent, authType = "private") => {
       if (isAuthenticated !== null) {
         setIsCheckingAuth(false);
       }
-    }, []);
+    }, [isAuthenticated]);
 
     useEffect(() => {
       if (isCheckingAuth || isAuthenticated === null) return;
