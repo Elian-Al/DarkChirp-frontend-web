@@ -14,7 +14,9 @@ const withAuth = (WrappedComponent, authType = "private") => {
 
     useEffect(() => {
       hydrate();
-      setIsCheckingAuth(false);
+      if (isAuthenticated !== null) {
+        setIsCheckingAuth(false);
+      }
     }, []);
 
     useEffect(() => {
