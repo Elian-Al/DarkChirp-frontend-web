@@ -198,14 +198,12 @@ function Profile() {
             );
           })}
           <div className={styles.loadMoreButtonArea}>
-            {posts.length === 0 ? (
-              <span>Aucun post à afficher</span>
-            ) : (
+            {posts.length === 0 && !isLoading && <span>Aucun post à afficher</span>}
+            {posts.length > 0 && !isLoading && (
               <Button onClick={() => fetchUserPosts(posts.length, 11, false)}>
                 Charger plus de posts
               </Button>
             )}
-            {/* <Button onClick={fetchUserPosts}>Charger plus de posts</Button> */}
           </div>
         </div>
       </div>
